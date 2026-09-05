@@ -1,0 +1,144 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK ;
+  https://registry.npmjs.org/react-native-zendrive ;
+  https://zendrive-root.bitbucket.io/ios/docs/latest/index.html
+name: Zendrive client libraries
+description: >-
+  Zendrive shipped a mobile-first product: the integration surface is a native Android/iOS
+  SDK plus cross-platform wrappers, not an HTTP client library. The Android SDK is published
+  first-party to Maven Central under the com.zendrive.sdk.android group; the React Native
+  wrapper is published first-party to npm by "Zendrive Inc. <developers@zendrive.com>". The
+  iOS SDK is NOT distributed through CocoaPods or Swift Package Manager — trunk.cocoapods.org
+  returns "No pod found" for ZendriveSDK, Zendrive and ZendriveSDKSwift — it was distributed
+  as a binary framework through the (now decommissioned) developer portal, so only its
+  reference documentation survives. Every first-party package stopped publishing in
+  June/July 2024, immediately around Intuit's 2024-07-11 close of the Zendrive technology
+  acquisition; that is the abandonment signal, and it is provider-published and dated.
+packages:
+- language: java
+  platform: android
+  registry: maven
+  name: com.zendrive.sdk.android:ZendriveSDK
+  url: https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK
+  install: implementation 'com.zendrive.sdk.android:ZendriveSDK:10.1.0'
+  official: true
+  version: 10.1.0
+  published: '2024-06-24'
+  evidence: >-
+    POM declares url https://zendrive.com, organization Zendrive, developer
+    seaduck-team@zendrive.com and licence https://www.zendrive.com/terms_website — first party.
+- language: java
+  platform: android
+  registry: maven
+  name: com.zendrive.sdk.android:ZendriveSDK-HMS
+  url: https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK-HMS
+  install: implementation 'com.zendrive.sdk.android:ZendriveSDK-HMS:10.1.0'
+  official: true
+  version: 10.1.0
+  published: '2024-06-24'
+  note: Huawei Mobile Services build of the Android SDK, for devices without Google Play Services.
+- language: java
+  platform: android
+  registry: maven
+  name: com.zendrive.sdk.android:ZendriveSDK-testing
+  url: https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK-testing
+  install: implementation 'com.zendrive.sdk.android:ZendriveSDK-testing:10.1.0'
+  official: true
+  version: 10.1.0
+  published: '2024-06-24'
+  note: >-
+    Test/simulation build used to drive mock trips through the SDK without real driving.
+    See sandbox/zendrive-sandbox.yml.
+- language: javascript
+  platform: react-native
+  registry: npm
+  name: react-native-zendrive
+  url: https://www.npmjs.com/package/react-native-zendrive
+  install: npm install react-native-zendrive
+  official: true
+  version: 7.0.5
+  published: '2024-07-03'
+  evidence: >-
+    npm metadata author is "Zendrive Inc." <developers@zendrive.com>; the package README
+    links Zendrive-operated guide, API reference and release-notes sites.
+  note: >-
+    Package README describes it as a beta release. The provider's own release notes list
+    7.1.0 (wrapping SDK 10.1.0) as the latest version, which was never published to npm —
+    the registry stops at 7.0.5.
+- language: javascript
+  platform: cordova-phonegap
+  registry: npm
+  name: com.zendrive.phonegap.sdk
+  url: https://www.npmjs.com/package/com.zendrive.phonegap.sdk
+  install: cordova plugin add com.zendrive.phonegap.sdk
+  official: true
+  version: 2.3.4
+  published: '2021-04-07'
+  evidence: >-
+    npm metadata declares repository github.com/zendrive/zendrive-sdk-phonegap-plugin — a
+    repo under Zendrive's own GitHub organization (since removed; the org now exposes only
+    the two sample apps).
+  note: Superseded by react-native-zendrive; last published 2021.
+- language: javascript
+  platform: cordova-phonegap
+  registry: npm
+  name: com.zendrive.phonegap
+  url: https://www.npmjs.com/package/com.zendrive.phonegap
+  install: cordova plugin add com.zendrive.phonegap
+  official: true
+  version: 2.3.3
+  published: '2021-04-07'
+  note: Earlier plugin id for the same Cordova/PhoneGap plugin; same declared zendrive-org repository.
+- language: javascript
+  platform: cordova-phonegap
+  registry: npm
+  name: cordova-plugin-zendrive
+  url: https://www.npmjs.com/package/cordova-plugin-zendrive
+  install: cordova plugin add cordova-plugin-zendrive
+  official: false
+  version: 2.3.4
+  published: '2021-04-14'
+  note: >-
+    Same description and npm maintainer as the two zendrive-org-linked PhoneGap plugins, but
+    its own metadata carries no repository, homepage or author attribution, so first-party
+    status cannot be established from the registry alone. Recorded, not credited.
+- language: javascript
+  platform: node
+  registry: npm
+  name: zendrive
+  url: https://www.npmjs.com/package/zendrive
+  install: npm install zendrive
+  official: false
+  version: 0.2.1
+  published: '2015-05-26'
+  note: >-
+    Third-party Node.js wrapper for the (now decommissioned) Zendrive Analytics REST API,
+    published by github.com/caarbon. Community, not Zendrive.
+- language: swift
+  platform: ios
+  registry: null
+  name: ZendriveSDK (iOS)
+  url: https://zendrive-root.bitbucket.io/ios/docs/latest/index.html
+  install: null
+  official: true
+  version: 10.1.0
+  published: '2024-06-25'
+  note: >-
+    No registry distribution. CocoaPods trunk returns "No pod found with the specified name"
+    for ZendriveSDK, Zendrive and ZendriveSDKSwift, and there is no Swift Package Manager
+    manifest. Version and date are read from the published jazzy reference
+    ("ZendriveSDK 10.1.0 Docs", "Last updated: 2024-06-25"); the binary itself was delivered
+    through developers.zendrive.com, which no longer resolves.
+absent_registries:
+- registry: pypi
+  probe: https://pypi.org/pypi/zendrive/json
+  status: 404
+- registry: rubygems
+  probe: https://rubygems.org/api/v1/gems/zendrive.json
+  status: 404
+  note: '"This rubygem could not be found."'
+- registry: cocoapods
+  probe: https://trunk.cocoapods.org/api/v1/pods/ZendriveSDK
+  status: 404

@@ -1,0 +1,215 @@
+generated: '2026-09-05'
+method: probed
+source: https://zendrive.com/
+name: Zendrive well-known + contract discovery probe
+description: >-
+  Negative probe record for Zendrive. The company's own domain is decommissioned: zendrive.com
+  and www.zendrive.com have NO A record at all (the zone is still hosted on Cloudflare
+  nameservers and still carries Google Workspace MX records, but nothing answers on HTTP), so
+  every probe against them fails to connect rather than returning a status. docs.zendrive.com
+  is the only zendrive.com host left with an address, and it is a DANGLING Cloudflare CNAME —
+  every path returns HTTP 403 with the 17-byte body "error code: 1014" (CNAME Cross-User
+  Banned), which is a Cloudflare edge error, not a document. Historical hosts named in
+  Certificate Transparency (app, api, iql, developers, docs-sdk, documentation,
+  react-native.docs, live, dr, us, eu, auth01, claims-dashboard) are all NXDOMAIN.
+  The one 200 in this probe is on zendrive-root.bitbucket.io — Zendrive Inc's own Bitbucket
+  Pages workspace, which still serves the SDK reference — and it is Atlassian's platform-wide
+  security.txt, not Zendrive's: it is PGP-signed by security@atlassian.com and declares
+  Canonical https://www.atlassian.com/.well-known/security.txt. It is therefore recorded as a
+  miss and NO WellKnown or SecurityTxt pointer is emitted from this probe.
+hosts:
+- host: zendrive.com
+  disposition: no-dns
+  note: >-
+    No A/AAAA record. NS = melany/thaddeus.ns.cloudflare.com; MX still points at Google
+    Workspace. Connection fails (curl exit 6/7), so no HTTP status exists to record; status
+    is written as 0 to mean "did not connect".
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 0
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 0
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 0
+    file: null
+  - path: /.well-known/api-catalog
+    status: 0
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 0
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 0
+    file: null
+  - path: /.well-known/agent.json
+    status: 0
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 0
+    file: null
+- host: www.zendrive.com
+  disposition: no-dns
+  note: No A/AAAA record; identical failure to the apex.
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 0
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 0
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 0
+    file: null
+  - path: /.well-known/api-catalog
+    status: 0
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 0
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 0
+    file: null
+  - path: /.well-known/agent.json
+    status: 0
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 0
+    file: null
+- host: docs.zendrive.com
+  disposition: dangling-cname
+  note: >-
+    Resolves to Cloudflare (172.67.161.199 / 104.21.9.243) and answers every path with
+    HTTP 403, content-type text/plain, 17 bytes, body "error code: 1014" — Cloudflare's
+    CNAME Cross-User Banned error. No path on this host returns a document.
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 403
+    file: null
+- host: zendrive-root.bitbucket.io
+  disposition: live
+  note: >-
+    Zendrive Inc's own Bitbucket Pages workspace (api.bitbucket.org/2.0/workspaces/zendrive-root
+    returns name "Zendrive Inc"), still serving the iOS and Android SDK reference. The
+    security.txt 200 is Atlassian's platform document, PGP-signed by security@atlassian.com
+    with Canonical https://www.atlassian.com/.well-known/security.txt — it is NOT published by
+    Zendrive and is recorded as a miss.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    document: false
+    result: miss
+    reason: platform-document
+    detail: Atlassian/Bitbucket platform security.txt; Canonical is atlassian.com. Not Zendrive's.
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+- host: react-native-zendrive-guide-v2.netlify.app
+  disposition: live
+  note: Zendrive-operated React Native SDK guide (linked from the first-party npm package README).
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: react-native-zendrive-api-v2.netlify.app
+  disposition: live
+  note: Zendrive-operated React Native SDK API reference.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+contract_discovery:
+  result: no-machine-readable-contract-found
+  note: >-
+    STEP 0b was run in full. REST spec paths (/openapi.json, /openapi.yaml, /swagger.json,
+    /api-docs, /docs, /redoc, /llms.txt) were probed on docs.zendrive.com (403 on every path,
+    Cloudflare 1014) and on zendrive-root.bitbucket.io and both Netlify docs hosts (404 on
+    every path). There is no /graphql surface and no hosted MCP endpoint to introspect. No
+    OGC signal exists — Zendrive is a mobile telematics vendor, nothing in its material names
+    WMS/WFS/OGC. No agent card on any host. The Zendrive Analytics REST API existed
+    (docs.zendrive.com/en/latest/api/, cursor pagination with offset/limit; an IQL publisher
+    API at iql.zendrive.com/iql/v1/) but every host that served it is now NXDOMAIN and the
+    docs host is a dangling CNAME, so nothing machine-readable survives to harvest. Two
+    third-party wrappers of that API exist (github.com/caarbon/zendrive,
+    github.com/fleetio/zendrive) — they are NOT Zendrive-published and were not used to
+    reconstruct a contract.
+  probes:
+  - url: https://docs.zendrive.com/openapi.json
+    status: 403
+  - url: https://docs.zendrive.com/swagger.json
+    status: 403
+  - url: https://zendrive-root.bitbucket.io/openapi.json
+    status: 404
+  - url: https://zendrive-root.bitbucket.io/llms.txt
+    status: 404
+  - url: https://react-native-zendrive-api-v2.netlify.app/openapi.json
+    status: 404
+  - url: https://iql.zendrive.com/iql/v1/
+    status: 0
+  - url: https://github.com/zendrive/docs
+    status: 404

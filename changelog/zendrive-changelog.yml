@@ -1,0 +1,92 @@
+generated: '2026-09-05'
+method: searched
+source: https://master--react-native-zendrive-guide-v2.netlify.app/releases
+name: Zendrive React Native SDK release notes
+description: >-
+  The only dated, Zendrive-published change record still reachable. It covers the React Native
+  wrapper and names the underlying Android/iOS SDK version each wrapper release bundles, which
+  makes it a usable proxy for the native SDK release line as well. The native per-version
+  release notes lived on docs.zendrive.com and are gone (dangling Cloudflare CNAME, HTTP 403
+  "error code: 1014"), as is any product/API changelog for the Analytics REST API.
+scheme: semver
+surface: react-native-sdk
+current_version: 7.1.0
+current_version_note: >-
+  7.1.0 is the newest entry in Zendrive's own release notes, but it was never published to
+  npm — the registry's latest is 7.0.5 (2024-07-03). Recorded as a divergence, not corrected.
+latest_native_sdk: 10.1.0
+window: recent-entries-as-published
+entries:
+- version: 7.1.0
+  date: null
+  native_sdk:
+    android: 10.1.0
+    ios: 10.1.0
+  breaking: false
+  highlights:
+  - Bumps the bundled Android and iOS SDK to 10.1.0.
+  note: Present in the release notes; absent from npm.
+- version: 7.0.4
+  date: null
+  breaking: false
+  highlights:
+  - 'Fix: Restricted main thread access for debug logger in iOS.'
+- version: 7.0.3
+  date: null
+  native_sdk:
+    android: 10.0.3
+    ios: 10.0.4
+  breaking: false
+  highlights:
+  - Support for debug logger in React Native.
+  - iOS manifest updates and Android bug fixes.
+- version: 7.0.2
+  date: null
+  breaking: false
+  highlights:
+  - Generated TypeScript types for the React Native Zendrive module.
+- version: 7.0.1
+  date: null
+  native_sdk:
+    android: 10.0.1
+  breaking: false
+  highlights:
+  - Kotlin upgraded to 1.7; Gradle upgraded to 8.
+  - Improved AWS SQS logging.
+- version: 7.0.0
+  date: null
+  native_sdk:
+    android: 10.0.0
+    ios: 10.0.0
+  breaking: true
+  highlights:
+  - Support for Android 14 (API level 34) and iOS 17.
+  - Collision detection and vehicle tagging improvements.
+  note: Major version bump of both the wrapper and the native SDKs.
+- version: 6.2.1
+  date: null
+  breaking: false
+  highlights:
+  - iOS location-authorization permissions bug fix.
+- version: 6.2.0
+  date: null
+  native_sdk:
+    android: 9.2.0
+    ios: 9.2.0
+  breaking: false
+  highlights:
+  - Battery-optimization capture.
+  - Collision detection improvements.
+  - Distracted-driving enhancements.
+earlier:
+  note: >-
+    The page continues back through 6.1.0 to 2.0.0, each entry naming the native SDK versions
+    it wraps. Only the recent window is structured here, per the pipeline's recent-window rule.
+dates:
+  published: false
+  note: >-
+    Zendrive's release notes carry version numbers but no publication dates. The dates that
+    ARE available are registry publish timestamps, recorded in packages/zendrive-packages.yml
+    (npm react-native-zendrive 7.0.5 on 2024-07-03; Maven ZendriveSDK 10.1.0 on 2024-06-24).
+    No date is inferred here.
+last_activity: '2024-07-03'

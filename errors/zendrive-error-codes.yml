@@ -1,0 +1,145 @@
+generated: '2026-09-05'
+method: searched
+source: https://zendrive-root.bitbucket.io/ios/docs/latest/Enums/ZendriveError.html
+name: Zendrive SDK error codes
+description: >-
+  The complete published error registry for the Zendrive SDK, transcribed verbatim from the
+  first-party iOS SDK reference (ZendriveSDK 10.1.0, last updated 2024-06-25). Zendrive's
+  integration surface is a mobile SDK rather than an HTTP API, so errors are delivered as an
+  NSError in the kZendriveErrorDomain domain (Android: the equivalent ZendriveSDKErrorCode)
+  through the completion handler of each Zendrive API call — there is no RFC 9457 envelope
+  and no HTTP status mapping, because the client never speaks HTTP directly. Codes are
+  grouped by the numbering the SDK itself uses: 0-3 setup/environment, 101+ runtime.
+format: sdk-error-enum
+envelope:
+  transport: NSError / completion handler
+  domain: kZendriveErrorDomain
+  vehicle_tagging_domain: kZendriveVehicleTaggingErrorDomain
+  fields:
+  - code
+  - description
+  note: >-
+    Every Zendrive API that can fail takes a ZendriveApiCallHandler completion block and
+    reports failure through it; the SDK does not throw.
+error_count: 23
+errors:
+- code: 0
+  name: kZendriveErrorInvalidSDKKeyString
+  message: SDK Key used in setup is invalid
+  class: setup
+- code: 1
+  name: kZendriveErrorNetworkUnreachable
+  message: >-
+    Network not reachable. Zendrive.setup sometimes needs a network call for authentication
+    and to update SDK configuration; this error is returned whenever network is unavailable
+    in those scenarios.
+  class: setup
+- code: 2
+  name: kZendriveErrorUnsupportedOSVersion
+  message: Zendrive SDK does not support the OS version of the device.
+  class: environment
+- code: 3
+  name: kZendriveErrorDeviceUnsupported
+  message: Zendrive SDK does not support the device type.
+  class: environment
+- code: 101
+  name: kZendriveErrorInvalidParams
+  message: Invalid parameter was passed to the API.
+  class: request
+- code: 102
+  name: kZendriveErrorInternalFailure
+  message: Internal error.
+  class: internal
+- code: 103
+  name: kZendriveErrorNotSetup
+  message: >-
+    ZendriveSDK is not setup. Also returned when SDK setup has started but the completion
+    handler for setup has not been called yet.
+  class: state
+- code: 104
+  name: kZendriveErrorInsurancePeriodSame
+  message: >-
+    Insurance Period has not changed from the previously active period; action ignored.
+    May be returned from ZendriveInsurance startPeriod1, startDriveWithPeriod2,
+    startDriveWithPeriod3.
+  class: state
+- code: 105
+  name: kZendriveErrorInvalidTrackingId
+  message: >-
+    Invalid trackingId passed for new drive. May be returned from ZendriveInsurance
+    startDriveWithPeriod2, startDriveWithPeriod3.
+  class: request
+- code: 106
+  name: kZendriveErrorNotTornDown
+  message: >-
+    ZendriveSDK is not torn down. Returned when the requested operation cannot complete
+    while the SDK is running, such as the wipeOut API.
+  class: state
+- code: 107
+  name: kZendriveErrorIOError
+  message: Some IO error occurred while doing the operation. Refer to the error description for more info.
+  class: internal
+- code: 108
+  name: kZendriveErrorInvalidRegion
+  message: Operation failed because the ZendriveRegion provided was invalid.
+  class: request
+- code: 109
+  name: kZendriveErrorRegionUnsupported
+  message: Operation failed because the provided ZendriveRegion is not supported for this application.
+  class: authorization
+- code: 110
+  name: kZendriveErrorUnauthorizedRegionSwitch
+  message: Changing region post setup is NOT allowed until +[Zendrive wipeOut:] is called.
+  class: state
+- code: 111
+  name: kZendriveErrorUserDeprovisioned
+  message: User is not authorized to use this application.
+  class: authorization
+- code: 112
+  name: kZendriveErrorUnsupportedVehicleType
+  message: Operation failed because the set-vehicle-type feature is disabled in the config.
+  class: authorization
+- code: 113
+  name: kZendriveErrorInvalidBeaconUUID
+  message: Failed to register beacon due to invalid UUID string.
+  class: request
+- code: 114
+  name: kZendriveErrorBeaconNotFound
+  message: Failed to remove beacon as beacon was not found.
+  class: request
+- code: 115
+  name: kZendriveErrorMaxBeaconsLimitReached
+  message: Cannot add more than 2 beacons.
+  class: limit
+- code: 116
+  name: kZendriveErrorExpiredPausedTillTimestamp
+  message: >-
+    The pausedTillTimestamp parameter passed to +[Zendrive pauseAutoTracking:error:] must be
+    in the future.
+  class: request
+- code: 117
+  name: kZendriveErrorRefreshBusinessHoursTimeout
+  message: Refresh business hours API call timeout.
+  class: transient
+- code: 118
+  name: kZendriveErrorRefreshBusinessHoursNetworkNotAvailable
+  message: Network is not available when the refresh business hours API is invoked.
+  class: transient
+- code: 119
+  name: kZendriveErrorRefreshBusinessHoursNotEnabled
+  message: >-
+    Refresh business hours is not enabled. (The published reference text for 119 repeats the
+    118 sentence verbatim; transcribed as published, and the name is the authoritative
+    meaning.)
+  class: authorization
+settings_errors:
+  note: >-
+    A second, separate registry — ZendriveSettingsErrorType — reports device/OS conditions
+    that stop trip detection (permissions, power saver, background restrictions) through
+    ZendriveSettings/ZendriveSettingsError rather than through kZendriveErrorDomain.
+  reference: https://zendrive-root.bitbucket.io/ios/docs/latest/Enums/ZendriveSettingsErrorType.html
+gaps:
+- >-
+  No HTTP-level error catalog survives. The Zendrive Analytics REST API had its own error
+  documentation at docs.zendrive.com, which is now a dangling Cloudflare CNAME (403,
+  "error code: 1014") — so the server-side error surface cannot be captured.

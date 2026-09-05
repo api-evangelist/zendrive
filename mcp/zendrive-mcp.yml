@@ -1,0 +1,33 @@
+generated: '2026-09-05'
+method: searched
+source: well-known/zendrive-well-known.yml
+name: Zendrive MCP
+description: >-
+  Zendrive publishes no MCP server, and none can be derived. The pipeline derives a candidate
+  tool list from OpenAPI operations; Zendrive has no OpenAPI (and no GraphQL SDL) on any
+  reachable host, so there is nothing to project into tools. No endpoint is invented. This
+  file exists to record a searched absence, and NO MCPServer pointer is wired into apis.yml
+  from it.
+status: none
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+tools: []
+searched:
+- surface: hosted MCP endpoint on any zendrive.com host
+  result: not-found
+  note: >-
+    Every zendrive.com host except docs.zendrive.com is NXDOMAIN; docs.zendrive.com answers
+    403 (Cloudflare 1014) on every path. There is no host left that could serve one.
+- surface: npm / PyPI package named for a Zendrive MCP server
+  result: not-found
+  note: >-
+    npm search for "zendrive" returns only the SDK wrappers and community REST wrappers
+    (see packages/zendrive-packages.yml); PyPI has no zendrive project (404).
+- surface: derivation from OpenAPI
+  result: not-possible
+  note: No OpenAPI exists in this repo or on any reachable Zendrive host.

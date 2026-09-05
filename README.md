@@ -64,5 +64,50 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Zendrive is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/zendrive_stock/
+Zendrive Inc. was a San Francisco mobility risk intelligence company that measured driving
+behavior from ordinary smartphone sensors. Its integration surface was a **mobile SDK, not an
+HTTP API**: an application embedded the Zendrive SDK, which detected the start and end of every
+drive, collected accelerometer/gyroscope/GPS data with minimal battery impact, raised in-process
+callbacks for trip and collision events, and uploaded the drive to Zendrive for scoring. Fleets,
+rideshare operators and auto insurers consumed the analytics through a dashboard and a
+server-side Analytics REST API.
+
+Intuit announced on 2024-06-13 that it would acquire Zendrive's technology for Credit Karma's
+usage-based auto insurance product, Karma Drive, taking on CEO Dennis Ellis and co-founder/CTO
+Pankaj Risbood. The developer program was shut down afterwards.
+
+## Status as probed 2026-09-05
+
+- `zendrive.com` and `www.zendrive.com` have **no DNS A record**. Nothing answers on HTTP.
+- `developers.zendrive.com`, `app.zendrive.com`, `api.zendrive.com`, `iql.zendrive.com` and
+  `status.zendrive.com` are NXDOMAIN.
+- `docs.zendrive.com` is a **dangling Cloudflare CNAME** — every path returns HTTP 403 with the
+  body `error code: 1014`. That is an edge error, not documentation.
+- No OpenAPI, Swagger, GraphQL SDL, AsyncAPI, agent card, `llms.txt`, MCP server or
+  `/.well-known/` document is served on any reachable Zendrive host. The full negative probe is
+  in [`well-known/zendrive-well-known.yml`](well-known/zendrive-well-known.yml).
+- The zone itself is still **actively held**: a Google Trust Services certificate for
+  `zendrive.com` and `*.zendrive.com` was issued 2026-08-26, DMARC is `p=reject` with strict
+  alignment, and CAA carries an `iodef` security contact. See
+  [`security/zendrive-domain-security.yml`](security/zendrive-domain-security.yml).
+
+## What is still online (all first-party, all read-only)
+
+| Surface | URL |
+|---|---|
+| iOS SDK reference (ZendriveSDK 10.1.0) | https://zendrive-root.bitbucket.io/ios/docs/latest/index.html |
+| Android SDK javadoc (v10.1.0) | https://zendrive-root.bitbucket.io/android/docs/latest/index.html |
+| React Native SDK guide | https://react-native-zendrive-guide-v2.netlify.app/readme |
+| React Native SDK API reference | https://react-native-zendrive-api-v2.netlify.app/ |
+| React Native release notes | https://master--react-native-zendrive-guide-v2.netlify.app/releases |
+| GitHub organization (two sample apps) | https://github.com/zendrive |
+| Maven Central `com.zendrive.sdk.android:ZendriveSDK` 10.1.0 | https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK |
+| npm `react-native-zendrive` 7.0.5 | https://www.npmjs.com/package/react-native-zendrive |
+
+Every first-party publication stops in the same fortnight as the acquisition — Maven 2024-06-24,
+the iOS reference 2024-06-25, npm 2024-07-03 — and nothing has shipped since. The binaries remain
+downloadable but **no integration can be completed**: SDK setup validates an application key
+against Zendrive's servers, and no new key can be issued.
+
+Harvest source: https://forgeglobal.com/zendrive_stock/ (a secondary-market listing, not a
+company website — deliberately not wired as a `Website` pointer).

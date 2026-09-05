@@ -1,17 +1,56 @@
 aid: zendrive
 name: Zendrive
-description: 'Zendrive is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Zendrive Inc. was a San Francisco mobility risk intelligence company that turned an ordinary
+  smartphone into a telematics sensor. Its product was a mobile SDK, not an HTTP API: an app
+  embedded the Zendrive SDK, which automatically detected the start and end of every drive,
+  collected accelerometer, gyroscope and GPS data with minimal battery impact, raised
+  in-process callbacks for trip and collision events, and uploaded the drive for scoring.
+  Fleets, rideshare operators and auto insurers consumed the resulting analytics — collision
+  detection and severity, distracted driving, speeding, star ratings — through a dashboard and
+  an Analytics REST API, with rideshare insurance-period modelling and a US/EU data-residency
+  selector. Intuit acquired Zendrive's technology for Credit Karma's Karma Drive in 2024 and
+  the developer program was shut down: as probed 2026-09-05 every Zendrive host is dead. Only
+  the SDK reference, sample apps and published packages survive.
 url: https://raw.githubusercontent.com/api-evangelist/zendrive/refs/heads/main/apis.yml
+image: https://avatars.githubusercontent.com/u/9817922?v=4
 x-type: company
 x-source: harvest:secondary-market
+x-harvest-source-url: https://forgeglobal.com/zendrive_stock/
 x-tier: stub
-x-tier-reason: harvest
+x-tier-reason: end-of-life-sdk-only
+x-status: acquired-eol
+x-acquirer: Intuit Inc. / Credit Karma
+x-acquisition-announced: '2024-06-13'
+x-acquisition-note: >-
+  Intuit acquired technology from Zendrive to power Credit Karma's Karma Drive usage-based
+  auto insurance product, along with CEO Dennis Ellis, co-founder/CTO Pankaj Risbood and
+  certain employees. Terms were not disclosed. Announced 2024-06-13, closed Q4 FY24.
+x-domain-status: decommissioned
+x-domain-note: >-
+  zendrive.com and www.zendrive.com have NO A/AAAA record — the zone is still on Cloudflare
+  nameservers and still carries Google Workspace MX records, but nothing answers on HTTP.
+  developers.zendrive.com, app.zendrive.com, api.zendrive.com, iql.zendrive.com and
+  status.zendrive.com are NXDOMAIN. docs.zendrive.com is a dangling Cloudflare CNAME and
+  returns HTTP 403 with the 17-byte body "error code: 1014" on every path, including every
+  /.well-known/ and spec path. None of those 403s is a document. No Website pointer is wired,
+  because the company has no live site; the Forge Global secondary-market listing that seeded
+  this record is kept under x-harvest-source-url rather than as a Website, since a trading
+  venue page is not a company web presence. See well-known/zendrive-well-known.yml.
 specificationVersion: '0.20'
 created: '2026-09-05'
 modified: '2026-09-05'
 tags:
 - Company
+- Telematics
+- Mobility
+- Insurance
+- Automotive
+- Fleet Management
+- Driving Behavior
+- Mobile SDK
+- Risk
+- Acquired
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +58,42 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
-- type: Website
-  url: https://forgeglobal.com/zendrive_stock/
+- type: GitHubOrganization
+  url: https://github.com/zendrive
+- type: Documentation
+  url: https://zendrive-root.bitbucket.io/ios/docs/latest/index.html
+- type: APIReference
+  url: https://react-native-zendrive-api-v2.netlify.app/
+- type: GettingStarted
+  url: https://react-native-zendrive-guide-v2.netlify.app/readme
+- type: SourceCode
+  url: https://github.com/zendrive/zendrive-sdk-ios-sample
+- type: Packages
+  url: packages/zendrive-packages.yml
+- type: SDKs
+  url: packages/zendrive-packages.yml
+- type: ChangeLog
+  url: changelog/zendrive-changelog.yml
+- type: Lifecycle
+  url: lifecycle/zendrive-lifecycle.yml
+- type: Authentication
+  url: authentication/zendrive-authentication.yml
+- type: ErrorCatalog
+  url: errors/zendrive-error-codes.yml
+- type: Sandbox
+  url: sandbox/zendrive-sandbox.yml
+- type: Conformance
+  url: conformance/zendrive-conformance.yml
+- type: Plans
+  url: plans/zendrive-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/zendrive-rate-limits.yml
+- type: LLMsTxt
+  url: llms/zendrive-llms.txt
+- type: DomainSecurity
+  url: security/zendrive-domain-security.yml
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v3

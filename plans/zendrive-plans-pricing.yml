@@ -1,0 +1,29 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.zendrive.com/
+name: Zendrive plans and pricing
+description: >-
+  No pricing is published and none can be. Zendrive sold enterprise telematics contracts to
+  fleets and insurers through a sales motion, and whatever pricing or packaging material once
+  existed lived on zendrive.com, which now has no DNS A record at all. There is no self-serve
+  tier, no published rate card, and no machine-readable pricing endpoint.
+plan_count: 0
+plans: []
+model: enterprise-contact-sales
+availability: discontinued
+note: >-
+  Beyond the ordinary "contact us" gate, the company's developer program is decommissioned
+  after Intuit's 2024 acquisition of Zendrive's technology for Credit Karma — the signup hosts
+  (developers.zendrive.com, app.zendrive.com) are NXDOMAIN, so no plan can be purchased or
+  provisioned at any price. plan_count is 0 because nothing is published, not because the
+  page was not looked for.
+evidence:
+- url: https://www.zendrive.com/
+  status: 0
+  note: No A record; connection fails.
+- url: https://zendrive.com/
+  status: 0
+  note: No A record; connection fails.
+- url: https://docs.zendrive.com/
+  status: 403
+  note: 'Dangling Cloudflare CNAME, "error code: 1014".'

@@ -1,0 +1,28 @@
+generated: '2026-09-05'
+method: searched
+source: https://zendrive-root.bitbucket.io/ios/docs/latest/
+name: Zendrive rate limits
+description: >-
+  No rate limits are published. Zendrive's public surface is a mobile SDK, whose reference
+  documents no request quota, no throttling behaviour and no rate-limit response headers —
+  the SDK batches sensor data to Zendrive's servers on its own schedule and the integrator
+  never issues the HTTP calls. The Analytics REST API, which is where a documented limit would
+  have lived, is unreachable: docs.zendrive.com is a dangling Cloudflare CNAME (403) and every
+  API host is NXDOMAIN, so nothing can be read or observed.
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status: null
+note: >-
+  Two hard caps ARE published in the SDK reference, but they are resource limits rather than
+  rate limits and are recorded here only so the zero is not mistaken for "not looked at":
+  a maximum of 2 registered beacons (kZendriveErrorMaxBeaconsLimitReached, 115), and
+  ZendriveConfiguration allows only one active region per application. Neither is a
+  per-window request limit.
+evidence:
+- url: https://zendrive-root.bitbucket.io/ios/docs/latest/index.html
+  status: 200
+  note: Full SDK reference read; no rate-limit, quota or throttling section exists.
+- url: https://docs.zendrive.com/
+  status: 403
+  note: REST API documentation host is a dangling Cloudflare CNAME.

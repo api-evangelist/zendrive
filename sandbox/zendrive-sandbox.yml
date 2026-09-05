@@ -1,0 +1,61 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://github.com/zendrive/zendrive-sdk-android-sample ;
+  https://github.com/zendrive/zendrive-sdk-ios-sample ;
+  https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK-testing
+name: Zendrive test + simulation surface
+description: >-
+  Zendrive shipped a real test surface, but it is a simulation harness rather than a hosted
+  sandbox: there is no test-mode API host and no test/live key-prefix split. Because trips are
+  produced by physically driving with a phone, the testable unit is a MOCK DRIVE, and Zendrive
+  published dedicated tooling for it — a separate Maven artifact for Android and a mock target
+  plus a preset-drive simulator in the iOS sample app. No test credentials, cards or fixtures
+  were ever published: an integrator supplies their own application key, so there are no
+  published test values to record and none are invented here.
+sandbox_type: simulation-harness
+hosted_sandbox: false
+test_live_key_split: false
+components:
+- name: ZendriveSDK-testing
+  platform: android
+  kind: package
+  package: com.zendrive.sdk.android:ZendriveSDK-testing
+  url: https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK-testing
+  version: 10.1.0
+  published: '2024-06-24'
+  usage: >-
+    From the sample README: "Complete the steps above to initialize Zendrive SDK / Build the
+    zendrivesdktesting variant of the sample app / Simulate!" — i.e. a build variant that
+    swaps in the testing artifact so trips can be simulated without driving.
+- name: Mock-ZendriveSDKDemo target
+  platform: ios
+  kind: sample-app-target
+  url: https://github.com/zendrive/zendrive-sdk-ios-sample
+  usage: >-
+    From the sample README: "Run Mock-ZendriveSDKDemo target! / For simulating sample mock
+    drives, Goto Settings->Simulate Preset Drives."
+- name: ZendriveTest
+  platform: ios
+  kind: sdk-class
+  url: https://zendrive-root.bitbucket.io/ios/docs/latest/Classes/ZendriveTest.html
+  usage: Published test-support class in the iOS SDK reference.
+- name: ZendriveMockAccidentConfig
+  platform: ios
+  kind: sdk-class
+  url: https://zendrive-root.bitbucket.io/ios/docs/latest/Classes/ZendriveMockAccidentConfig.html
+  usage: >-
+    Configuration object for raising a simulated collision, so accident callbacks can be
+    exercised without a real crash.
+test_credentials:
+  published: false
+  note: >-
+    None published. Integrators used their own application key from developers.zendrive.com
+    (now NXDOMAIN), so there is no first-party test key, test card or magic identifier to
+    record.
+availability:
+  status: partially-available
+  note: >-
+    The Android testing artifact remains downloadable from Maven Central and the sample apps
+    remain on GitHub, but neither can complete SDK setup: setup validates the application key
+    against Zendrive's servers over the network, and no key can be obtained any more.

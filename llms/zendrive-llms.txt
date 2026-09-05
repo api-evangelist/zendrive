@@ -1,0 +1,83 @@
+# Zendrive
+
+> Zendrive Inc. was a San Francisco mobility risk intelligence company that measured driving
+> behavior from ordinary smartphone sensors. Its product was a mobile SDK, not an HTTP API:
+> an app embedded the Zendrive SDK, the SDK detected the start and end of every drive,
+> collected accelerometer/gyroscope/GPS data with minimal battery impact, and uploaded it to
+> Zendrive for scoring — collision detection, distracted driving, speeding, phone handling —
+> which fleets and auto insurers consumed through a dashboard and an Analytics REST API.
+> Intuit announced on 2024-06-13 that it would acquire Zendrive's technology for Credit
+> Karma's usage-based auto insurance product, Karma Drive, taking on Zendrive's CEO and
+> co-founder/CTO. The developer program was shut down afterwards.
+
+## Status (probed 2026-09-05)
+
+- The developer program is END OF LIFE. No new integration is possible.
+- zendrive.com and www.zendrive.com have NO DNS A record. Nothing answers on HTTP.
+- developers.zendrive.com, app.zendrive.com, api.zendrive.com, iql.zendrive.com and
+  status.zendrive.com are NXDOMAIN.
+- docs.zendrive.com is a dangling Cloudflare CNAME: every path returns HTTP 403 with the body
+  "error code: 1014" (CNAME Cross-User Banned). It is not documentation, it is an edge error.
+- No OpenAPI, Swagger, GraphQL SDL, AsyncAPI, agent card, llms.txt, MCP server or
+  /.well-known/ document is served on any reachable Zendrive host.
+- SDK setup validates the application key against Zendrive's servers over the network, and no
+  new application key can be obtained, so the surviving binaries below cannot be initialized.
+
+## What is still online (all first-party, all read-only)
+
+- [iOS SDK reference](https://zendrive-root.bitbucket.io/ios/docs/latest/index.html):
+  ZendriveSDK 10.1.0, last regenerated 2024-06-25, served from Zendrive Inc's own Bitbucket
+  Pages workspace.
+- [Android SDK javadoc](https://zendrive-root.bitbucket.io/android/docs/latest/index.html):
+  Zendrive SDK for Android v10.1.0.
+- [React Native SDK guide](https://react-native-zendrive-guide-v2.netlify.app/readme)
+- [React Native SDK API reference](https://react-native-zendrive-api-v2.netlify.app/)
+- [React Native release notes](https://master--react-native-zendrive-guide-v2.netlify.app/releases)
+- [GitHub organization](https://github.com/zendrive): two sample apps,
+  zendrive-sdk-ios-sample and zendrive-sdk-android-sample.
+
+## Packages
+
+- Maven Central `com.zendrive.sdk.android:ZendriveSDK` 10.1.0 (2024-06-24), plus `-HMS`
+  (Huawei Mobile Services) and `-testing` (trip simulation) at the same version.
+- npm `react-native-zendrive` 7.0.5 (2024-07-03), published by Zendrive Inc.
+- npm `com.zendrive.phonegap.sdk` 2.3.4 (2021-04-07), the superseded Cordova/PhoneGap plugin.
+- The iOS SDK was never on CocoaPods or Swift Package Manager; it was delivered as a binary
+  framework through the developer portal that no longer resolves.
+
+## Integration model
+
+- Authentication: a single opaque `applicationKey` (SDK key) plus a caller-chosen `driverId`,
+  both required in `ZendriveConfiguration` and validated at
+  `+[Zendrive setupWithConfiguration:delegate:completionHandler:]`. No OAuth, no scopes.
+- Data residency: `ZendriveConfiguration.region` is `ZendriveRegionUS` (default) or
+  `ZendriveRegionEU`, fixed at setup and changeable only after `wipeOut`.
+- Events arrive as in-process delegate callbacks (`ZendriveDelegateProtocol`), not webhooks.
+- Errors are `NSError` in `kZendriveErrorDomain`; 23 codes are published.
+- Insurance periods 1/2/3 are modelled directly (`ZendriveInsurance`,
+  `ZendriveInsurancePeriod`) for rideshare/TNC coverage.
+- Testing is simulation, not a hosted sandbox: the `ZendriveSDK-testing` Maven artifact, the
+  `Mock-ZendriveSDKDemo` iOS target, "Simulate Preset Drives", and `ZendriveMockAccidentConfig`.
+
+## Artifacts in this profile
+
+- packages/zendrive-packages.yml — every registry-published client library, with versions and dates
+- errors/zendrive-error-codes.yml — the 23 published SDK error codes
+- authentication/zendrive-authentication.yml — the application-key model and data residency
+- sandbox/zendrive-sandbox.yml — the trip-simulation harness
+- changelog/zendrive-changelog.yml — React Native SDK release notes
+- lifecycle/zendrive-lifecycle.yml — acquisition timeline, end-of-life state, surviving surfaces
+- conformance/zendrive-conformance.yml — standards conformance, mostly negative
+- well-known/zendrive-well-known.yml — the full negative discovery probe
+- plans/zendrive-plans-pricing.yml, rate-limits/zendrive-rate-limits.yml — honest zeros
+- mcp/zendrive-mcp.yml — searched absence; no MCP server exists and none was derived
+
+## Notes for agents
+
+- Do not attempt to call a Zendrive API. There is no reachable host.
+- Do not confuse Zendrive with Fairmatic (founded by Zendrive's original founder, now
+  redirecting to leeoinsurance.com), with Damoov/Telematics SDK, or with Zendesk.
+- github.com/caarbon/zendrive and github.com/fleetio/zendrive are third-party wrappers of the
+  retired Analytics REST API. They are not published by Zendrive.
+
+Generated by API Evangelist. This is an independent third-party profile; see README.md.

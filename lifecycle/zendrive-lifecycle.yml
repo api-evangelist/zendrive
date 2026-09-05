@@ -1,0 +1,132 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://investors.intuit.com/news-events/press-releases/detail/1196/intuit-to-acquire-technology-from-zendrive ;
+  https://master--react-native-zendrive-guide-v2.netlify.app/releases ;
+  https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK
+name: Zendrive lifecycle
+description: >-
+  Zendrive's developer program is decommissioned. Intuit announced on 2024-06-13 that it would
+  acquire technology from Zendrive to power Credit Karma's usage-based auto-insurance product
+  Karma Drive, taking on Zendrive CEO Dennis Ellis and co-founder/CTO Pankaj Risbood along with
+  certain employees; the deal closed in Intuit's Q4 FY24. Every first-party publication stops
+  in the same fortnight — Maven Central ZendriveSDK 10.1.0 on 2024-06-24, the iOS reference
+  regenerated 2024-06-25, npm react-native-zendrive 7.0.5 on 2024-07-03 — and there has been
+  no release since. The corporate and developer web presence has since been switched off
+  entirely: zendrive.com and www.zendrive.com have no A record, developers.zendrive.com,
+  app.zendrive.com, api.zendrive.com and iql.zendrive.com are NXDOMAIN, and docs.zendrive.com
+  is a dangling Cloudflare CNAME returning 403 "error code: 1014" on every path. There was no
+  published deprecation policy, no sunset headers, and no end-of-life notice — the surface was
+  simply turned off.
+status: end-of-life
+status_note: >-
+  SDK binaries remain downloadable from Maven Central and npm, and the SDK reference remains
+  online on Zendrive Inc's own Bitbucket Pages workspace, but no integration can be completed:
+  SDK setup validates the application key against Zendrive's servers, and no new key can be
+  obtained because the signup host no longer resolves.
+versioning:
+  scheme: semver
+  native_sdk_current: 10.1.0
+  react_native_current_published: 7.0.5
+  react_native_current_documented: 7.1.0
+  policy_published: false
+  note: >-
+    Versioning is per-SDK, not per-API. No API version prefix survives to describe; the
+    Analytics REST API used a /v1 path (iql.zendrive.com/iql/v1/) but nothing about its
+    version policy is recoverable.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy was ever published, and no Sunset/Deprecation (RFC 8594)
+    signalling is documented. Individual SDK members ARE marked deprecated inside the
+    reference — ZendriveConfiguration.managesLocationPermission and
+    ZendriveConfiguration.managesActivityPermission both carry "Deprecated" with a stated
+    replacement behaviour — which is the only deprecation practice on record.
+  deprecated_members:
+  - member: ZendriveConfiguration.managesLocationPermission
+    guidance: >-
+      "This property needs to be set to NO and the application should completely control the
+      user experience related to asking location permission."
+    source: https://zendrive-root.bitbucket.io/ios/docs/latest/Classes/ZendriveConfiguration.html
+  - member: ZendriveConfiguration.managesActivityPermission
+    guidance: >-
+      "This property needs to be set to NO and the application should completely control the
+      user experience related to asking motion and fitness permission."
+    source: https://zendrive-root.bitbucket.io/ios/docs/latest/Classes/ZendriveConfiguration.html
+status_page:
+  published: false
+  probes:
+  - url: https://status.zendrive.com
+    status: 0
+    note: NXDOMAIN.
+  - url: https://zendrive.statuspage.io
+    status: 302
+    note: >-
+      Redirects to https://www.statuspage.io — the Atlassian Statuspage marketing site, which
+      is what an unclaimed or deleted page returns. Not a Zendrive status page. No StatusPage
+      pointer is emitted.
+sla:
+  published: false
+  note: No public SLA document is reachable.
+support:
+  channels:
+  - kind: email
+    value: support@zendrive.com
+    source: https://api.github.com/orgs/zendrive
+    note: >-
+      Declared on Zendrive Inc's GitHub organization profile and repeated in the
+      react-native-zendrive README ("directly contact Zendrive support via
+      support@zendrive.com"). The zendrive.com zone still carries Google Workspace MX records,
+      so the mailbox may still route, but deliverability was not tested and no reply was
+      solicited.
+  - kind: email
+    value: developers@zendrive.com
+    source: https://registry.npmjs.org/react-native-zendrive
+    note: Author address on the first-party npm package.
+timeline:
+- date: '2013'
+  event: Zendrive Inc. founded; mobile-sensor driving-behaviour analytics for fleets and insurers.
+  confidence: low
+  note: Founding year is not asserted from a first-party source and is recorded as background only.
+- date: '2024-06-13'
+  event: >-
+    Intuit announces an agreement to acquire technology from Zendrive for Credit Karma's Karma
+    Drive; Dennis Ellis (CEO) and Pankaj Risbood (co-founder/CTO) join Credit Karma with
+    certain other employees. Terms not disclosed.
+  source: https://investors.intuit.com/news-events/press-releases/detail/1196/intuit-to-acquire-technology-from-zendrive
+- date: '2024-06-24'
+  event: "Last Maven Central release — com.zendrive.sdk.android:ZendriveSDK 10.1.0 (and -HMS, -testing)."
+  source: https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK
+- date: '2024-06-25'
+  event: 'iOS SDK reference last regenerated ("Last updated: 2024-06-25", jazzy 0.14.4).'
+  source: https://zendrive-root.bitbucket.io/ios/docs/latest/index.html
+- date: '2024-07-03'
+  event: Last npm release — react-native-zendrive 7.0.5. No first-party publication since.
+  source: https://registry.npmjs.org/react-native-zendrive
+- date: '2024-07-11'
+  event: Acquisition closes (reported); Q4 FY24 per Intuit's announcement.
+  confidence: medium
+- date: '2026-09-05'
+  event: >-
+    Probed: zendrive.com/www NO A record; developers/app/api/iql/status.zendrive.com NXDOMAIN;
+    docs.zendrive.com 403 Cloudflare 1014 on every path. SDK reference, React Native guide and
+    GitHub samples still 200.
+  source: well-known/zendrive-well-known.yml
+surviving_surfaces:
+- url: https://zendrive-root.bitbucket.io/ios/docs/latest/index.html
+  status: 200
+  what: iOS SDK reference (ZendriveSDK 10.1.0)
+- url: https://zendrive-root.bitbucket.io/android/docs/latest/index.html
+  status: 200
+  what: Android SDK javadoc (v10.1.0)
+- url: https://react-native-zendrive-guide-v2.netlify.app/readme
+  status: 200
+  what: React Native SDK integration guide
+- url: https://react-native-zendrive-api-v2.netlify.app/
+  status: 200
+  what: React Native SDK API reference
+- url: https://github.com/zendrive
+  status: 200
+  what: Zendrive Inc GitHub organization (two sample apps)
