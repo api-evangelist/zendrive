@@ -13,6 +13,21 @@ description: >-
   the developer program was shut down: as probed 2026-09-05 every Zendrive host is dead. Only
   the SDK reference, sample apps and published packages survive.
 url: https://raw.githubusercontent.com/api-evangelist/zendrive/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  license_evidence:
+    not_product:
+    - zendrive/zendrive-sdk-ios-sample
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: low
+  source:
+  - pricing
+  - repository-not-product
+  generated: '2026-09-25'
+  method: derived
 image: https://avatars.githubusercontent.com/u/9817922?v=4
 x-type: company
 x-source: harvest:secondary-market
@@ -41,6 +56,17 @@ specificationVersion: '0.20'
 created: '2026-09-05'
 modified: '2026-09-05'
 tags:
+- Company
+- Telematics
+- Mobility
+- Insurance
+- Automotive
+- Fleet Management
+- Driving Behavior
+- Mobile SDK
+- Risk Management
+- Acquired
+tags_raw:
 - Company
 - Telematics
 - Mobility
