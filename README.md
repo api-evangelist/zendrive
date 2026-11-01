@@ -64,50 +64,62 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Zendrive Inc. was a San Francisco mobility risk intelligence company that measured driving
-behavior from ordinary smartphone sensors. Its integration surface was a **mobile SDK, not an
-HTTP API**: an application embedded the Zendrive SDK, which detected the start and end of every
-drive, collected accelerometer/gyroscope/GPS data with minimal battery impact, raised in-process
-callbacks for trip and collision events, and uploaded the drive to Zendrive for scoring. Fleets,
-rideshare operators and auto insurers consumed the analytics through a dashboard and a
-server-side Analytics REST API.
+> **Acquired or rebranded.** This company was acquired, merged or renamed. Its API, if it still exists, is offered under another name. This profile is kept as a historical record and is not maintained or rated.
 
-Intuit announced on 2024-06-13 that it would acquire Zendrive's technology for Credit Karma's
-usage-based auto insurance product, Karma Drive, taking on CEO Dennis Ellis and co-founder/CTO
-Pankaj Risbood. The developer program was shut down afterwards.
+**Status:** acquired-eol
 
-## Status as probed 2026-09-05
+Zendrive Inc. was a San Francisco mobility risk intelligence company that turned an ordinary smartphone into a telematics sensor. Its product was a mobile SDK, not an HTTP API: an app embedded the Zendrive SDK, which automatically detected the start and end of every drive, collected accelerometer, gyroscope and GPS data with minimal battery impact, raised in-process callbacks for trip and collision events, and uploaded the drive for scoring. Fleets, rideshare operators and auto insurers consumed the resulting analytics — collision detection and severity, distracted driving, speeding, star ratings — through a dashboard and an Analytics REST API, with rideshare insurance-period modelling and a US/EU data-residency selector. Intuit acquired Zendrive's technology for Credit Karma's Karma Drive in 2024 and the developer program was shut down: as probed 2026-09-05 every Zendrive host is dead. Only the SDK reference, sample apps and published packages survive.
 
-- `zendrive.com` and `www.zendrive.com` have **no DNS A record**. Nothing answers on HTTP.
-- `developers.zendrive.com`, `app.zendrive.com`, `api.zendrive.com`, `iql.zendrive.com` and
-  `status.zendrive.com` are NXDOMAIN.
-- `docs.zendrive.com` is a **dangling Cloudflare CNAME** — every path returns HTTP 403 with the
-  body `error code: 1014`. That is an edge error, not documentation.
-- No OpenAPI, Swagger, GraphQL SDL, AsyncAPI, agent card, `llms.txt`, MCP server or
-  `/.well-known/` document is served on any reachable Zendrive host. The full negative probe is
-  in [`well-known/zendrive-well-known.yml`](well-known/zendrive-well-known.yml).
-- The zone itself is still **actively held**: a Google Trust Services certificate for
-  `zendrive.com` and `*.zendrive.com` was issued 2026-08-26, DMARC is `p=reject` with strict
-  alignment, and CAA carries an `iodef` security contact. See
-  [`security/zendrive-domain-security.yml`](security/zendrive-domain-security.yml).
+**Areas:** Company · Telematics · Mobility · Insurance · Automotive · Fleet Management · Driving Behavior · Mobile SDK · Risk Management · Acquired
 
-## What is still online (all first-party, all read-only)
+## Zendrive on APIs.io (historical record)
 
-| Surface | URL |
-|---|---|
-| iOS SDK reference (ZendriveSDK 10.1.0) | https://zendrive-root.bitbucket.io/ios/docs/latest/index.html |
-| Android SDK javadoc (v10.1.0) | https://zendrive-root.bitbucket.io/android/docs/latest/index.html |
-| React Native SDK guide | https://react-native-zendrive-guide-v2.netlify.app/readme |
-| React Native SDK API reference | https://react-native-zendrive-api-v2.netlify.app/ |
-| React Native release notes | https://master--react-native-zendrive-guide-v2.netlify.app/releases |
-| GitHub organization (two sample apps) | https://github.com/zendrive |
-| Maven Central `com.zendrive.sdk.android:ZendriveSDK` 10.1.0 | https://central.sonatype.com/artifact/com.zendrive.sdk.android/ZendriveSDK |
-| npm `react-native-zendrive` 7.0.5 | https://www.npmjs.com/package/react-native-zendrive |
+Everything profiled for Zendrive is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/zendrive/](https://apis.io/providers/zendrive/)** — or go straight to one of the APIs or properties below.
 
-Every first-party publication stops in the same fortnight as the acquisition — Maven 2024-06-24,
-the iOS reference 2024-06-25, npm 2024-07-03 — and nothing has shipped since. The binaries remain
-downloadable but **no integration can be completed**: SDK setup validates an application key
-against Zendrive's servers, and no new key can be issued.
+### Published properties
 
-Harvest source: https://forgeglobal.com/zendrive_stock/ (a secondary-market listing, not a
-company website — deliberately not wired as a `Website` pointer).
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Zendrive Authentication](https://apis.io/security/zendrive/zendrive-authentication/)
+- [Zendrive Domain Security](https://apis.io/security/zendrive/zendrive-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Zendrive Plans Pricing](https://apis.io/plans/zendrive/zendrive-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Zendrive Rate Limits](https://apis.io/rate-limits/zendrive/zendrive-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Documentation](https://zendrive-root.bitbucket.io/ios/docs/latest/index.html)
+- [Getting started](https://react-native-zendrive-guide-v2.netlify.app/readme)
+- [API reference](https://react-native-zendrive-api-v2.netlify.app/)
+- [GitHub](https://github.com/zendrive)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as acquired or rebranded, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Zendrive: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/zendrive/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
